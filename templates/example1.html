@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="col-offset-md-1 col-md-10">
+        <form action="{% url 'example1' %}" method='POST'>{% csrf_token %}
+            <table class="table table-hover table-stripped">
+                <thead>
+                </thead>
+                {{ formset.management_form }}
+                {{ formset.non_form_errors }}
+                <tbody>
+                {% for form in formset %}
+                    <tr>
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        <td>{{ forloop.counter }}</td>
+                        {% for field in form.visible_fields %}
+                            <td>{{ field.label_tag }}</td>
+                            <td>{{ field.errors }}{{ field }}</td>
+                        {% endfor %}
+                    </tr>
+                    {{ form.cellphone_formset.management_form }}
+                    {{ form.cellphone_formset.non_form_errors }}
+                    {% for cell in form.cellphone_formset %}
+                        <tr>
+                            {% for hidden in cell.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            {% for field in cell.visible_fields %}
+                                <td></td>
+                                <td>{{ field.label_tag }}</td>
+                                <td>{{ field.errors }}{{ field }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    {% for email in form.email_formset %}
+                        <tr>
+                            {% for hidden in email.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            {% for field in email.visible_fields %}
+                                <td></td>
+                                <td>{{ field.label_tag }}</td>
+                                <td>{{ field.errors }}{{ field }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+            <div>
+                <input type="submit" value="guardar"/>
+            </div>
+        </form>
+    </div>
+{% endblock %}

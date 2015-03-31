@@ -1,0 +1,43 @@
+# e glob syntax.
+syntax: glob
+
+# Archivos temporales
+*~
+*.pyc
+*.bak
+*.orig
+ 
+# Nodejs
+node_modules/*
+ 
+# Django
+media/*
+static_files/*
+ 
+#Carpeta
+build/*
+ 
+# IDEs
+*.nja
+.settings/*
+.project
+.pydevproject
+*.sublime-*
+*.~*
+*.log*
+ 
+# DBs
+*.sqlite
+*.sqlite3
+*.dat
+*.db
+*.db-journal
+ 
+# git
+.git/*
+.gitignore
+.svn
+ 
+# switch to regexp syntax.
+syntax: regexp
+settings/[a-zA-Z0-9]+.py$
